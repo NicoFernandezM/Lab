@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 public class IMC {
     public static void main(String[] args) {
         inicializar();
@@ -33,8 +35,8 @@ public class IMC {
     }
 
     public static void mostrarDetallesPesoEstatura(double [] estaturas, double [] pesos) {
-        System.out.println("Estatura promedio: " + calcularPromedioArreglo(estaturas));
-        System.out.println("Peso promedio: " + calcularPromedioArreglo(pesos));
+        System.out.println("Estatura promedio: " + formatearNumero(calcularPromedioArreglo(estaturas)));
+        System.out.println("Peso promedio: " + formatearNumero(calcularPromedioArreglo(pesos)));
     }
 
     public static int [] contarPorCategoria(double [] curso) {
@@ -95,9 +97,19 @@ public class IMC {
     public static void mostrarMatriz(double [][] matriz) {
         for (int i = 0; i < matriz.length; i++) {
             for(int j = 0; j < matriz[0].length; j++) {
-                System.out.print(matriz[i][j] + "   ");
+                System.out.print(formatearNumero(matriz[i][j]) + "   ");
             }
             System.out.println();
         }
+    }
+
+    /*
+    * Este método sirve para formatear un número decimal. Básicamente recibe un double y devuelve un
+    * String que representa al número formateado. Es importante usar este método solo cuando se quiere
+    * mostrar algo, ya que como dije anteriormente, devuelve un String, no un dato de tipo númerico.*/
+
+    public static String formatearNumero(double numero) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        return decimalFormat.format(numero);
     }
 }
